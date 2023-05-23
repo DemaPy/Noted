@@ -1,26 +1,19 @@
-import { useEffect, useState } from 'react'
-import { Search } from '../components/'
-import { Notes } from '../components/Notes'
-import { usePosts } from '../hooks/usePosts'
+import { Search, Notes, ModalNote} from '../components/'
+import { useAppContext } from '../state/context'
+
+
 
 export const Main = () => {
+  const context = useAppContext()
 
-  const [sorted, setSorted] = useState([])
-  const [posts, status] = usePosts()
-
-  const handleSearch = (e) => {
-    const sortedPosts = posts.filter(post => post.title.toLowerCase().includes(e.target.value.toLowerCase()))
-    setSorted(sortedPosts)
-  }
-
-  useEffect(() => {
-    setSorted(posts)
-  }, [posts])
+  const filteredPosts = context.posts.filter(post => post.title.toLowerCase().includes(context.search.toLowerCase()))
+  const itemsToDisplay = context.search ? filteredPosts : context.posts
 
   return (
     <div className="py-6">
-      <Search handleSearch={handleSearch}/>
-      <Notes posts={sorted} status={status}/>
+      <Search value={context.search} onChange={context.setSearch} />
+      <Notes notes={itemsToDisplay} relativeColorsToPostId={context.relativeColorsToPostId}/>
+      <ModalNote />
     </div>
   )
 }

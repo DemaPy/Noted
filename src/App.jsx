@@ -8,7 +8,7 @@ function App() {
 
   return (
     <Container>
-      <Row >
+      <Row className='h-[100%]'>
         <Col className='flex align-top items-center flex-col border-r-2' span={4}>
           <Sidebar/>
         </Col>

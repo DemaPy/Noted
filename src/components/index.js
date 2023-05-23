@@ -2,18 +2,18 @@ import { Container } from './Container'
 import { Search } from './Search'
 import { Sidebar } from './Sidebar'
 import { AddNote } from './AddNote'
-import { Circle } from './Circle'
 import { Title } from './Title'
-import { List } from './List'
 import { Note } from './Note'
+import { Notes } from './Notes'
+import { ModalNote } from './Modal'
 
 export {
+    ModalNote,
     Container,
     Sidebar,
     Search,
+    Notes,
     AddNote,
-    Circle,
     Title,
-    List,
     Note
 }
