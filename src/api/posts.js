@@ -8,3 +8,12 @@ const api = axios.create({
 export const getPosts = async () => {
     return await api.get('posts')
 }
+
+export const createPost = async ({ title, body, color }) => {
+    return await api.post('posts', {
+        title,
+        body,
+        color,
+        userId: 777,
+    })
+}
