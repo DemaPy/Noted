@@ -1,8 +1,7 @@
-
 export const Logo = () => {
   return (
     <div className="font-bold text-lg">
-        <span>Noted</span>
+      <span>Noted</span>
     </div>
-  )
-}
+  );
+};
