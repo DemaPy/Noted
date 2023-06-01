@@ -1,20 +1,20 @@
 import { useMemo, useState } from "react";
-import { Search, Notes, ModalNote } from "../components/";
+import { Search, Notes } from "../components/";
 import { useAppContext } from "../state/context";
 import { usePosts } from '../hooks/usePosts'
 
-export const Main = ({ color }) => {
-  const [posts, status, setPosts] = usePosts()
+export const Main = () => {
+  const status = usePosts()
   const [search, setSearch] = useState("")
-  const context = useAppContext();
+  const {notes, relativeColorsToPostId} = useAppContext();
 
   const filteredPosts = useMemo(() => {
-    return posts.filter((post) => {
+    return notes.filter((post) => {
       return post.title.toLowerCase().includes(search.toLowerCase())
     })
-  }, [search])
+  }, [search, notes])
 
-  const itemsToDisplay = search ? filteredPosts : posts;
+  const itemsToDisplay = search ? filteredPosts : notes;
 
   return (
     <div className="py-6">
@@ -22,9 +22,8 @@ export const Main = ({ color }) => {
       <Notes
         status={status}
         notes={itemsToDisplay}
-        relativeColorsToPostId={context.relativeColorsToPostId}
+        relativeColorsToPostId={relativeColorsToPostId}
       />
-      <ModalNote setPosts={setPosts} color={color} />
     </div>
   );
 };

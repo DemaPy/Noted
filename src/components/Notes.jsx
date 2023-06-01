@@ -8,9 +8,15 @@ export const Notes = ({ notes, status, relativeColorsToPostId }) => {
       <div className="md:mb-20 mb-14">
         <Title />
       </div>
+      
       <Skeleton loading={status.loading}>
         <Row gutter={[32, 32]}>
-          {notes.map((post) => {
+          {
+          status.error
+          ?
+          <Col>{status.message}</Col>
+          :
+          notes.map((post) => {
             return (
               <Col
                 xs={{ span: 24 }}
@@ -20,6 +26,7 @@ export const Notes = ({ notes, status, relativeColorsToPostId }) => {
                 key={post.id}
               >
                 <Note
+                  id={post.id}
                   title={post.title}
                   body={post.body}
                   color={
@@ -29,8 +36,9 @@ export const Notes = ({ notes, status, relativeColorsToPostId }) => {
                   }
                 />
               </Col>
-            );
-          })}
+            )
+          })
+        }
         </Row>
       </Skeleton>
     </div>

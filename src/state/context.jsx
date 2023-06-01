@@ -8,14 +8,15 @@ export function useAppContext() {
   return data;
 }
 
-export function AppContextProvider({ children, isModalOpen, toggleModal }) {
+export function AppContextProvider({ children }) {
+  const [notes, setNotes] = useState([])
   const [currentId, setCurrentId] = useState(101);
   const [relativeColorsToPostId, setRelativeColorsToPostId] = useState({});
 
 
   const value = {
-    isModalOpen,
-    toggleModal,
+    notes,
+    setNotes,
     currentId,
     setCurrentId,
     relativeColorsToPostId,

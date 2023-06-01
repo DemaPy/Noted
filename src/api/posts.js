@@ -5,7 +5,7 @@ const api = axios.create({
 });
 
 export const getPosts = async () => {
-  return await api.get("posts?_limit=0");
+  return await api.get("posts?_limit=0")
 };
 
 export const createPost = async ({ title, body, color }) => {
@@ -14,5 +14,5 @@ export const createPost = async ({ title, body, color }) => {
     body,
     color,
     userId: 777,
-  });
+  })
 };

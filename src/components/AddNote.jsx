@@ -1,7 +1,7 @@
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import { useAppContext } from "../state/context";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Circle } from "./Circle";
 
 const colors = ["bg-red-400", "bg-orange-400", "bg-teal-400", "bg-green-400"];
 
@@ -14,25 +14,8 @@ const variantsUl = {
   },
 };
 
-const variantsLi = {
-  open: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      y: { stiffness: 1000, velocity: -100 },
-    },
-  },
-  closed: {
-    y: 50,
-    opacity: 0,
-    transition: {
-      y: { stiffness: 1000 },
-    },
-  },
-};
 
 export const AddNote = () => {
-  const context = useAppContext();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleColor = () => {
@@ -52,17 +35,8 @@ export const AddNote = () => {
           className="w-10 h-10 cursor-pointer"
         />
       </motion.div>
-
       <motion.ul initial={false} variants={variantsUl} animate={isOpen ? "open" : "closed"}>
-        {colors.map((color, index) => (
-          <motion.li
-            whileHover={{ scale: 1.1 }}
-            variants={variantsLi}
-            onClick={() => context.toggleModal(color)}
-            key={index}
-            className={`${color} h-5 w-5 rounded-full mb-5`}
-          ></motion.li>
-        ))}
+        {colors.map((color, index) => <Circle key={index} color={color} />)}
       </motion.ul>
     </div>
   );
